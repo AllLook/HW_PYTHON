@@ -16,10 +16,10 @@ import csv
 import pickle
 import os
 from pathlib import Path
-
-
-def defore_dir(dir_name):
-    if os.path.isdir(dir_name):  # Если переданная директория существует
+dir_name = input("Укажите путь до директории:")
+if os.path.isdir(dir_name):
+    def defore_dir(dir_name):
+    # if os.path.isdir(dir_name):  # Если переданная директория существует
         res_dir = []
 
         for dir_main, dir_inside, file_name in os.walk(dir_name):
@@ -44,5 +44,5 @@ def defore_dir(dir_name):
 
 if __name__ == '__main__':
 
-    dir_name = input("Укажите путь до директории:").replace('/', '\\').strip()
+    # dir_name = input("Укажите путь до директории:").replace('/', '\\').strip()
     defore_dir(dir_name)
