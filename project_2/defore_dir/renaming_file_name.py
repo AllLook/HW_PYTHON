@@ -32,7 +32,7 @@ def re_file(dir_name):
         print(obj_list)
         for item in obj_list:
             a, b, c = item  # Распоковываем  каждый кортеж на значения
-            DIR_LIST = namedtuple('DIR_LIST', ['dir', 'file', 'exeption'])  # Делаем класс со свойствами
+            DIR_LIST = namedtuple('DIR_LIST', ['dir', 'file', 'extension'])  # Делаем класс со свойствами
             copy_name = DIR_LIST(a, b, c)  # создаем его экземпляр
             copy_name_list.append(copy_name)  # добавляем в список экземпляров
             log_all()  # Вызываем логирование
