@@ -1,25 +1,13 @@
-# Решить задачи, которые не успели решить на семинаре.
-# Напишите функцию, которая получает на вход директорию и рекурсивно
-# обходит её и все вложенные директории. Результаты обхода сохраните в
-# файлы json, csv и pickle.
-# ○ Для дочерних объектов указывайте родительскую директорию.
-# ○ Для каждого объекта укажите файл это или директория.
-# ○ Для файлов сохраните его размер в байтах, а для директорий размер
-# файлов в ней с учётом всех вложенных файлов и директорий.
-# Соберите из созданных на уроке и в рамках домашнего задания функций
-# пакет для работы с файлами разных форматов
-
-#ПРОВЕРИЛ НА МАЛЕНЬКОЙ ДИРЕКТОРИИ
-
 import json
 import csv
 import pickle
 import os
 from pathlib import Path
-
-
-def defore_dir(dir_name):
-    if os.path.isdir(dir_name):  # Если переданная директория существует
+def dir_track():
+    dir_name = input("Укажите путь до директории:")
+    return dir_name
+if os.path.isdir(dir_track()):#само определяет как выставить слеши в пути
+    def defore_dir(dir_name):
         res_dir = []
 
         for dir_main, dir_inside, file_name in os.walk(dir_name):
@@ -30,7 +18,7 @@ def defore_dir(dir_name):
             res_dir.append(temp)
         with (
             open('list_json.json', 'w', encoding='utf-8') as f_json,
-            # для excel на виндовс
+            # для excel на виндовс, с utf-8 некорректно отражается
             open('list_csv.csv', 'w', encoding='cp1251') as f_csv,
             open('list_pickle.pickle', 'wb') as pf
         ):
@@ -41,8 +29,10 @@ def defore_dir(dir_name):
                 csv_write.writerow(item)
             pickle.dump(res_dir, pf)
 
+        return res_dir
+
 
 if __name__ == '__main__':
 
-    dir_name = input("Укажите путь до директории:").replace('/', '\\').strip()
-    defore_dir(dir_name)
+    # dir_name = input("Укажите путь до директории:").replace('/', '\\').strip()
+    defore_dir(dir_track())
